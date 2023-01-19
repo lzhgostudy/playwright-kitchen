@@ -2,7 +2,7 @@
 export default {
   title: "Playwright Kitchen",
   description: 'This is an example app used to showcase Playwright.dev testing. For a full reference of playwright documentation.',
-  base: '/',
+  base: '/playwright-kitchen/',
   // lang: 'en-US', //语言
   // 网页头部配置，引入需要图标，css，js
   // head: [
