@@ -6,7 +6,7 @@ hero:
   text: Example for Python.
   tagline: This is an example app used to showcase Playwright.dev testing. For a full reference of playwright documentation.
   image:
-    src: /playwright-logo.svg
+    src: /playwright-logo.png
     alt: playwright-logo
   actions:
     - theme: brand
