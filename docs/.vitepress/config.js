@@ -1,4 +1,3 @@
-import { demoBlockPlugin } from 'vitepress-theme-demoblock'
 
 export default {
   title: "Playwright Kitchen",
@@ -45,9 +44,4 @@ export default {
       copyright: 'Copyright © 2023-present Mine Lu'
     }
   },
-  markdown: {
-    config: (md) => {
-      md.use(demoBlockPlugin)
-    }
-  }
 }
