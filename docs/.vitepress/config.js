@@ -1,4 +1,5 @@
-// vitepress/config.js
+import { demoBlockPlugin } from 'vitepress-theme-demoblock'
+
 export default {
   title: "Playwright Kitchen",
   description: 'This is an example app used to showcase Playwright.dev testing. For a full reference of playwright documentation.',
@@ -44,4 +45,9 @@ export default {
       copyright: 'Copyright © 2023-present Mine Lu'
     }
   },
+  markdown: {
+    config: (md) => {
+      md.use(demoBlockPlugin)
+    }
+  }
 }
