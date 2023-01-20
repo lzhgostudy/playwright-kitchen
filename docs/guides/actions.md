@@ -1,6 +1,6 @@
 # Actions
 
-Playwright can interact with HTML Input elements such as text inputs, checkboxes, radio buttons, select options, mouse clicks, type characters, keys and shortcuts as well as upload files and focus elements.
+Playwright can interact with `Element-plus` input elements such as text inputs, checkboxes, radio buttons, select options, mouse clicks, type characters, keys and shortcuts as well as upload files and focus elements.
 
 <script setup>
 import { ref } from 'vue'
@@ -111,4 +111,10 @@ def test_actions(page: Page):
 
     page.wait_for_timeout(4000)
 
+```
+
+Run Test
+
+```bash
+pytest --headed example/1_locators.py --slowmo 1000
 ```
