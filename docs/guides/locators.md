@@ -17,13 +17,20 @@ const form = reactive({
   desc: '',
 })
 
+const url =
+  'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+
 const onSubmit = () => {
   console.log('submit!')
 }
 </script>
 
-<h2 style="text-align: center">Activity Form</h2>
+<h2 style="text-align: center">Form</h2>
+
 <el-form :model="form" label-width="120px">
+  <el-form-item label-width="0">
+    <el-image style="max-width: 100%" :src="url" fit="contain" alt="bird" />
+  </el-form-item>
   <el-form-item label="Activity name">
     <el-input v-model="form.name" />
   </el-form-item>
@@ -70,8 +77,8 @@ const onSubmit = () => {
       <el-radio label="Venue" />
     </el-radio-group>
   </el-form-item>
-  <el-form-item label="Activity form">
-    <el-input v-model="form.desc" type="textarea" />
+  <el-form-item label="Activity details">
+    <el-input v-model="form.desc" placeholder="Enter details" type="textarea" />
   </el-form-item>
   <el-form-item>
     <el-button type="primary" @click="onSubmit">Create</el-button>
@@ -90,4 +97,28 @@ expect(locator).to_have_class(re.compile('primary'))
 
 ```python
 page.get_by_label('Activity name').fill('swimming')
+```
+
+## `.get_by_placeholder()`
+
+```python
+page.get_by_placeholder('Enter details').fill("Hello Textarea")
+```
+
+## `.get_by_text()`
+
+```python
+page.get_by_text('Offline activities').click()
+```
+
+## `.get_by_alt_text()`
+
+```python
+page.get_by_alt_text('bird').click()
+```
+
+## Locate by CSS
+
+```python
+page.locator('button[class*="primary"]').click()
 ```

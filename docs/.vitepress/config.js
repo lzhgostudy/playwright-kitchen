@@ -13,6 +13,19 @@ export default {
       { icon: 'github', link: 'https://github.com/lzhgostudy/playwright-kitchen' },
     ],
     sidebar: [
+      {
+        text: "Getting Started",
+        items: [
+          {
+            text: "Installation",
+            link: "/start/installation"
+          },
+          {
+            text: "Writing Tests",
+            link: "/start/writing-tests"
+          }
+        ]
+      },
       { 
         text: 'Guide',
         items: [

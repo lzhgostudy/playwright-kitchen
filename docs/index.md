@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guides/actions
+      link: /start/installation
     - theme: alt
       text: View on GitHub
       link: https://github.com/lzhgostudy/playwright-kitchen

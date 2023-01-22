@@ -2,8 +2,24 @@
 
 Playwright can interact with `Element-plus` input elements such as text inputs, checkboxes, radio buttons, select options, mouse clicks, type characters, keys and shortcuts as well as upload files and focus elements.
 
+<style scoped>
+.block-col-2 .demonstration {
+  display: block;
+  color: var(--el-text-color-secondary);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+</style>
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import {
+  ArrowDown,
+  Check,
+  CircleCheck,
+  CirclePlus,
+  CirclePlusFilled,
+  Plus,
+} from '@element-plus/icons-vue'
 
 const form = ref({
   input: '',
@@ -17,6 +33,8 @@ const form = ref({
   textarea: "",
 })
 </script>
+
+## Form fill
 
 <el-form :model="form" label-width="120px">
   <el-form-item label="Text input">
@@ -117,4 +135,82 @@ Run Test
 
 ```bash
 pytest --headed example/1_locators.py --slowmo 1000
+```
+
+## Mouse click
+
+Performs a simple human click.
+
+
+
+
+<el-row class="block-col-2">
+  <el-col :span="8">
+    <span class="demonstration">hover to trigger</span>
+    <el-dropdown>
+      <span class="el-dropdown-link" data-pw="hover">
+        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlusFilled">
+            Action 2
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+          <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </el-col>
+  <el-col :span="8">
+    <span class="demonstration">click to trigger</span>
+    <el-dropdown trigger="click">
+      <span class="el-dropdown-link" data-pw="click">
+        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlusFilled">
+            Action 2
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+          <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </el-col>
+  <el-col :span="8">
+    <span class="demonstration">right click to trigger</span>
+    <el-dropdown trigger="contextmenu">
+      <span class="el-dropdown-link" data-pw="right-click">
+        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlusFilled">
+            Action 2
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+          <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </el-col>
+</el-row>
+
+```python
+def test_mouse(page: Page):
+    page.goto("https://lzhgostudy.github.io/playwright-kitchen/guides/actions.html")
+    # hover to trigger
+    page.locator('[data-pw="hover"]').hover()
+    # click to trigger
+    page.locator('[data-pw="click"]').click()
+    # right click to trigger
+    page.locator('[data-pw="right-click"]').click(button="right")
 ```
