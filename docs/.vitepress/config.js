@@ -23,6 +23,10 @@ export default {
           {
             text: "Writing Tests",
             link: "/start/writing-tests"
+          },
+          {
+            text: "Running Tests",
+            link: "/start/running-tests"
           }
         ]
       },
