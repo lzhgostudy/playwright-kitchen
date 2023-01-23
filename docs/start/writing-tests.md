@@ -53,3 +53,65 @@ class SampleTest:
         get_started.click()
 
 ```
+
+
+## pytest-ordering: run your tests in order
+
+[pytest-ordering](https://pytest-ordering.readthedocs.io/en/develop/) is a pytest plugin to run your tests in any order that you specify. It provides custom markers that say when your tests should run in relation to each other. 
+
+- Install plugin with: 
+
+```bash
+pip install pytest-ordering
+```
+
+With pytest-ordering, you can change the default ordering as follows:
+
+```python{5,10}
+import pytest
+from playwright.sync_api import Page, expect
+
+
+@pytest.mark.run(order=2)
+def test_one(page: Page):
+    pass
+
+
+@pytest.mark.run(order=1)
+def test_two(page: Page):
+    pass
+```
+
+## Skipping test functions
+
+With `@pytest.mark.skip`:
+
+```python{19}
+from playwright.sync_api import Page, expect
+import re
+import pytest
+
+
+def test_func(page: Page):
+    page.goto('https://lzhgostudy.github.io/playwright-kitchen/')
+
+    # Expect a title "to contain" a substring.
+    expect(page).to_have_title(re.compile('Kitchen'))
+
+    # create a locator
+    get_started = page.get_by_role("link", name="Get Started")
+
+    # Click the get started link.
+    get_started.click()
+
+
+@pytest.mark.skip
+def test_two(page: Page):
+    pass
+
+
+```
+
+::: tip
+Reference: [pytest.mark.skip](https://docs.pytest.org/en/stable/reference/reference.html#pytest-mark-skip-ref)
+:::

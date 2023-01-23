@@ -27,6 +27,19 @@ export default {
           {
             text: "Running Tests",
             link: "/start/running-tests"
+          },
+          {
+            text: "Pytest fixtures",
+            link: "/start/pytest-fixtures"
+          },
+        ],
+      },
+      {
+        text: "Allure",
+        items: [
+          {
+            text: "Get Started",
+            link: "/allure/quick-start"
           }
         ]
       },
