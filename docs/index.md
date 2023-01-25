@@ -17,6 +17,14 @@ hero:
       link: https://github.com/lzhgostudy/playwright-kitchen
 
 features:
+  - icon: 
+      src: /pytest-logo.svg
+    title: Pytest
+    details: Playwright provides a Pytest plugin to write end-to-end tests. 
+  - icon:
+      src: /allure.png
+    title: Allure
+    details: Generating Allure reports in the Playwright framework
   - icon:
       src: /vue-logo.svg
     title: VitePress
@@ -24,5 +32,6 @@ features:
   - icon:
       src: /element-plus-logo.png
     title: Element-plus
-    details: A Vue 3 based component library for designers and developers. All Vue Components consist of Element-plus.
+    details: A Vue 3 based component library for designers and developers. All Vue Components what used to example code are consist of Element-plus.
+    
 ---

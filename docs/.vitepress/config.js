@@ -18,20 +18,24 @@ export default {
         items: [
           {
             text: "Installation",
-            link: "/start/installation"
+            link: "/python/start/installation"
           },
           {
             text: "Writing Tests",
-            link: "/start/writing-tests"
+            link: "/python/start/writing-tests"
           },
           {
             text: "Running Tests",
-            link: "/start/running-tests"
+            link: "/python/start/running-tests"
           },
           {
             text: "Pytest fixtures",
-            link: "/start/pytest-fixtures"
+            link: "/python/start/pytest-fixtures"
           },
+          // {
+          //   text: "Parametrize fixtures",
+          //   link: "/start/parametrize-fixtures",
+          // },
         ],
       },
       {
@@ -39,7 +43,7 @@ export default {
         items: [
           {
             text: "Get Started",
-            link: "/allure/quick-start"
+            link: "/python/allure/quick-start"
           }
         ]
       },
@@ -48,15 +52,15 @@ export default {
         items: [
           {
             text: "Locators",
-            link: "/guides/locators"
+            link: "/python/guides/locators"
           },
           {
             text: "Actions",
-            link: "/guides/actions"
+            link: "/python/guides/actions"
           },
           {
             text: "Assertions",
-            link: "/guides/assertions"
+            link: "/python/guides/assertions"
           }
         ],
       }
