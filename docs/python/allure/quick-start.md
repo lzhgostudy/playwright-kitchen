@@ -14,7 +14,7 @@ pytest --alluredir=./tmp/my_allure_results
 ```ini
 [pytest]
 
-addopts = -sv --alluredir ./tmp/my_allure_results
+addopts = -sv --alluredir ./tmp/my_allure_results --clean-alluredir
 ```
 
 4. Generate report from the results.

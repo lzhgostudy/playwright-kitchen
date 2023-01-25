@@ -25,7 +25,7 @@ addopts = -s
 
 cache_dir = .pytest_cache
 
-python_files = *_test.py
+python_files = *test*.py
 
 python_classes = *Test
 

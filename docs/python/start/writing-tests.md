@@ -115,3 +115,19 @@ def test_two(page: Page):
 ::: tip
 Reference: [pytest.mark.skip](https://docs.pytest.org/en/stable/reference/reference.html#pytest-mark-skip-ref)
 :::
+
+
+## Configure base-url
+
+Start Pytest with the base-url argument. The `pytest-base-url` plugin is used for that which allows you to set the base url from the config, CLI arg or as a fixture.
+
+```bash
+pytest --base-url http://localhost:8080
+```
+
+```python
+# test_my_application.py
+def test_visit_example(page):
+    page.goto("/admin")
+    # -> Will result in http://localhost:8080/admin
+```
