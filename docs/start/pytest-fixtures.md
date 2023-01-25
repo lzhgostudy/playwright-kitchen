@@ -12,16 +12,21 @@ def test_my_app_is_working(fixture_name):
 
 ## Quick example
 
+**Function scope:** These fixtures are created when requested in a test function and destroyed when the test ends.
+
+- `context`: New [browser context](https://playwright.dev/python/docs/browser-contexts) for a test.
+- `page`: New [browser page](https://playwright.dev/python/docs/pages) for a test.
+
 ```python
 # MicroSoft Bing Search Tests
 
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import BrowserContext, Page, expect
 import re
 
 
-@pytest.fixture
-def before(page: Page):
+@pytest.fixture(scope='function')
+def before(context: BrowserContext, page: Page):
     page.goto('https://www.bing.com')
 
 
@@ -47,7 +52,7 @@ In this example, `test_search_playwright` requests `before` (`def test_search_pl
 Here's roughly what's happening if we were to do it by hand:
 
 ```python{5}
-def before(page: Page):
+def before(context: BrowserContext, page: Page):
   page.goto('https://www.bing.com')
 
 def test_search_playwright(page: Page):
@@ -70,7 +75,7 @@ import re
 
 
 @pytest.fixture
-def before(page: Page):
+def before(context: BrowserContext, page: Page):
     page.goto('https://www.bing.com')
 
 
@@ -93,7 +98,56 @@ class BingSearchTest:
         expect(page.locator('ol#b_results')).to_have_text(re.compile(keyword))
 ```
 
-## yield fixtures
+## Automate logging in
+
+**Session scope:** These fixtures are created when requested in a test function and destroyed when all tests end.
+
+- `playwright`: [Playwright](https://playwright.dev/python/docs/api/class-playwright) instance.
+- `browser_type`: [BrowserType](https://playwright.dev/python/docs/api/class-browsertype) instance of the current browser.
+- `browser`: [Browser](https://playwright.dev/python/docs/api/class-browser) instance launched by Playwright.
+- `browser_name`: Browser name as string.
+- `browser_channel`: Browser channel as string.
+- `is_chromium`, `is_webkit`, `is_firefox`: Booleans for the respective browser types.
+
+The following example automates logging into GitHub. Once these steps are executed, the browser context will be authenticated.
+
+```python
+from playwright.sync_api import Browser, Page, expect
+import pytest
+import re
+
+
+@pytest.fixture(scope='session')
+def github_login(browser: Browser):
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto('https://github.com/login')
+    # Interact with login form
+    page.get_by_text("Login").click()
+    page.get_by_label("User Name").fill(USERNAME)
+    page.get_by_label("Password").fill(PASSWORD)
+    page.get_by_text('Submit').click()
+
+    yield context
+
+
+def test_one(github_login):
+    # Continue with the test
+    context = github_login
+    page = context.new_page()
+    page.goto('...')
+
+
+def test_two(github_login):
+    # Continue with the test
+    context = github_login
+    page = context.new_page()
+    page.goto('...')
+```
+
+
+
+## Yield fixtures
 
 “Yield” fixtures `yield` instead of `return`. With these fixtures, we can run some code and pass an object back to the requesting fixture/test, just like with the other fixtures. 
 
@@ -137,6 +191,8 @@ def test_email_received(sending_user, receiving_user):
     sending_user.send_email(email, receiving_user)
     assert email in receiving_user.inbox
 ```
+
+**Reference:** [yield fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html#yield-fixtures-recommended)
 
 
 ## Defining fixtures in the root `conftest.py`
