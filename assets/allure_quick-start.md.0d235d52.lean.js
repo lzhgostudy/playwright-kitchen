@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as e,a as l}from"./app.f6bb53e8.js";const _=JSON.parse('{"title":"Get Started","description":"","frontmatter":{},"headers":[],"relativePath":"allure/quick-start.md"}'),t={name:"allure/quick-start.md"},n=l("",10),o=[n];function r(p,c,i,d,u,y){return a(),e("div",null,o)}const h=s(t,[["render",r]]);export{_ as __pageData,h as default};
