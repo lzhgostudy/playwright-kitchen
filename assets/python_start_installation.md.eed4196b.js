@@ -6,7 +6,7 @@ import{_ as s,o as a,c as n,a as l}from"./app.04572752.js";const d=JSON.parse('{
 <span class="line"></span>
 <span class="line"><span style="color:#F07178;">cache_dir</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">=</span><span style="color:#A6ACCD;"> .pytest_cache</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#F07178;">python_files</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">=</span><span style="color:#A6ACCD;"> *_test.py</span></span>
+<span class="line"><span style="color:#F07178;">python_files</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">=</span><span style="color:#A6ACCD;"> *test*.py</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F07178;">python_classes</span><span style="color:#A6ACCD;"> </span><span style="color:#89DDFF;">=</span><span style="color:#A6ACCD;"> *Test</span></span>
 <span class="line"></span>
