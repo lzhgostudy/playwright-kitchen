@@ -44,7 +44,15 @@ export default {
           {
             text: "Get Started",
             link: "/python/allure/quick-start"
-          }
+          },
+          // {
+          //   text: "Basic Reporting",
+          //   link: "/python/allure/basic-reporting"
+          // },
+          // {
+          //   text: "Supported Pytest features",
+          //   link: "/python/allure/supported-pytest-features"
+          // }
         ]
       },
       { 
