@@ -21,128 +21,251 @@ import {
   Plus,
 } from '@element-plus/icons-vue'
 
-const form = ref({
-  input: '',
-  datePicker: "",
-  timePicker: "",
-  datetimePicker: "",
+const act = ref({
+  fill: "",
   switch: false,
-  checkbox: [],
-  radio: "",
-  select: "",
-  textarea: "",
-})
+  checked: false,
+  select1: "",
+  select2: "",
+});
+const options = [
+  {
+    value: 'Option1',
+    label: 'Option1',
+  },
+  {
+    value: 'Option2',
+    label: 'Option2',
+  },
+  {
+    value: 'Option3',
+    label: 'Option3',
+  },
+  {
+    value: 'Option4',
+    label: 'Option4',
+  },
+  {
+    value: 'Option5',
+    label: 'Option5',
+  },
+]
 </script>
 
-## Form fill
+## `fill()、clear()`
 
-<el-form :model="form" label-width="120px">
+::: details Click me to view the Vue code
+```vue
+<template>
+<el-form :model="act" label-width="120px">
   <el-form-item label="Text input">
-    <el-input v-model="form.input" placeholder="Please input" />
+    <el-input v-model="act.fill" placeholder="Please input" />
   </el-form-item>
-  <el-form-item label="Date picker">
-    <el-date-picker v-model="form.datePicker" type="date" placeholder="Pick a day" />
-  </el-form-item>
-  <el-form-item label="Time picker">
-    <el-time-picker v-model="form.timePicker" placeholder="Pick time" />
-  </el-form-item>
-  <el-form-item label="Datetime picker">
-    <el-date-picker v-model="form.datetimePicker" type="datetime" placeholder="Select date and time" />
-  </el-form-item>
-  <el-form-item label="Switch">
-    <el-switch v-model="form.switch" />
-  </el-form-item>
-  <el-form-item label="Checkbox">
-    <el-checkbox-group v-model="form.checkbox">
-      <el-checkbox label="Online activities" name="type" />
-      <el-checkbox label="Promotion activities" name="type" />
-      <el-checkbox label="Offline activities" name="type" />
-      <el-checkbox label="Simple brand exposure" name="type" />
-    </el-checkbox-group>
-  </el-form-item>
-  <el-form-item label="Radio">
-    <el-radio-group v-model="form.radio">
-      <el-radio label="Sponsor" />
-      <el-radio label="Venue" />
-    </el-radio-group>
-  </el-form-item>
-  <el-form-item label="Select">
-    <el-select v-model="form.select" placeholder="please select your zone">
-      <el-option label="Zone one" value="shanghai" />
-      <el-option label="Zone two" value="beijing" />
-    </el-select>
-  </el-form-item>
-  <el-form-item label="Textarea">
-    <el-input v-model="form.textarea" type="textarea" />
+</el-form>  
+</template>
+```
+:::
+
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Text input">
+    <el-input v-model="act.fill" placeholder="Please input" />
   </el-form-item>
 </el-form>
 
 ```python
-import re
-from playwright.sync_api import Page, expect
-
-
-def test_actions(page: Page):
-    page.goto("https://lzhgostudy.github.io/playwright-kitchen/guides/actions.html")
-
-    # Text input
-    textInput = page.get_by_label('Text input')
-    textInput.fill('Hello Text input')
-    expect(textInput).to_have_value('Hello Text input')
-
-    # Date Picker
-    datePicker = page.get_by_label('Date picker')
-    datePicker.fill('2023-02-01')
-    datePicker.blur()
-
-    # Time Picker
-    timePicker = page.get_by_placeholder('Pick time')
-    timePicker.fill('10:43:20')
-    timePicker.blur()
-
-    # Datetime Picker
-    datetimePicker = page.get_by_placeholder('Select date and time')
-    datetimePicker.focus()
-    pickerPanel = page.locator('.el-picker-panel')
-    pickerPanel.get_by_placeholder('Select date').fill('2023-02-27')
-    pickerPanel.get_by_placeholder('Select time').fill('12:11:10')
-    datetimePicker.blur()
-
-    # Switch
-    switch = page.locator('.el-switch .el-switch__core')
-    switch.click()
-
-    # Checkbox
-    page.get_by_text('Online activities').click()
-    page.get_by_text('Offline activities').click()
-
-    # Radio
-    page.get_by_text('Venue').click()
-
-    # Select
-    page.get_by_label('Select').click()
-    page.locator('.el-select-dropdown li').get_by_text('Zone one').click()
-
-    # Textarea
-    textarea = page.get_by_label('Textarea')
-    textarea.fill('Hello Textarea')
-
-    page.wait_for_timeout(4000)
-
+page.get_by_label('Text input').fill('Hello Text input')
+page.get_by_label('Text input').clear()
 ```
 
-Run Test
 
-```bash
-pytest --headed example/1_locators.py --slowmo 1000
+## `click()`
+
+::: details Click me to view the Vue code
+```vue
+<template>
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Switch">
+    <el-switch v-model="act.switch" active-text="Open" inactive-text="Close" />
+  </el-form-item>
+</el-form>  
+</template>
+```
+:::
+
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Switch">
+    <el-switch v-model="act.switch" active-text="Open" inactive-text="Close" />
+  </el-form-item>
+</el-form>
+
+```python
+page.get_by_text('Open').click()
+page.get_by_text('Close').click()
+```
+
+## `check()、uncheck()` & `set_checked(bool)`
+
+::: details Click me to view the Vue code
+```vue
+<template>
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Checkbox">
+    <el-checkbox v-model="act.checked" label="Check Option 1" />
+  </el-form-item>
+</el-form>  
+</template>
+```
+:::
+
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Checkbox">
+    <el-checkbox v-model="act.checked" label="Check Option 1" />
+  </el-form-item>
+</el-form>
+
+```python
+# check & uncheck
+page.get_by_text('Check Option 1').check()
+page.get_by_text('Check Option 1').uncheck()
+
+# set_checked
+page.get_by_text('Check Option 1').set_checked(True)
+page.get_by_text('Check Option 1').set_checked(False)
+```
+
+## `Element-plus Select`
+
+::: details Click me to view the Vue code
+```vue
+<template>
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Select 1">
+      <el-select v-model="act.select1" placeholder="Select">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+  </el-form-item>
+  <el-form-item label="Select 2">
+      <el-select v-model="act.select2" placeholder="Select">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+  </el-form-item>
+</el-form>  
+</template>
+```
+:::
+
+<el-form :model="act" label-width="120px">
+  <el-form-item label="Select 1">
+      <el-select v-model="act.select1" placeholder="Select">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+  </el-form-item>
+  <el-form-item label="Select 2">
+      <el-select v-model="act.select2" placeholder="Select">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+  </el-form-item>
+</el-form>
+
+```python
+page.get_by_label('Select 1').click()
+popover = page.locator('.el-popper:visible')
+popover.get_by_text('Option2').click()
+
+page.get_by_label('Select 2').click()
+popover = page.locator('.el-popper:visible')
+popover.get_by_text('Option4').click()
 ```
 
 ## Mouse click
 
 Performs a simple human click.
 
-
-
+::: details Click me to view the Vue code
+```vue
+<template>
+<el-row class="block-col-2">
+  <el-col :span="8">
+    <span class="demonstration">hover to trigger</span>
+    <el-dropdown>
+      <span class="el-dropdown-link" data-pw="hover">
+        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlusFilled">
+            Action 2
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+          <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </el-col>
+  <el-col :span="8">
+    <span class="demonstration">click to trigger</span>
+    <el-dropdown trigger="click">
+      <span class="el-dropdown-link" data-pw="click">
+        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlusFilled">
+            Action 2
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+          <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </el-col>
+  <el-col :span="8">
+    <span class="demonstration">right click to trigger</span>
+    <el-dropdown trigger="contextmenu">
+      <span class="el-dropdown-link" data-pw="right-click">
+        Dropdown List<el-icon class="el-icon--right"><arrow-down /></el-icon>
+      </span>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item :icon="Plus">Action 1</el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlusFilled">
+            Action 2
+          </el-dropdown-item>
+          <el-dropdown-item :icon="CirclePlus">Action 3</el-dropdown-item>
+          <el-dropdown-item :icon="Check">Action 4</el-dropdown-item>
+          <el-dropdown-item :icon="CircleCheck">Action 5</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
+  </el-col>
+</el-row>  
+</template>
+```
+:::
 
 <el-row class="block-col-2">
   <el-col :span="8">
@@ -214,3 +337,4 @@ def test_mouse(page: Page):
     # right click to trigger
     page.locator('[data-pw="right-click"]').click(button="right")
 ```
+
