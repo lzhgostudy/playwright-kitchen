@@ -13,3 +13,9 @@
 .vp-doc table.el-table tr {
   border-top: none;
 }
+
+.vp-doc ul.el-upload-list {
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}

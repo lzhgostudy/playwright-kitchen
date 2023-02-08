@@ -49,7 +49,33 @@ const options = [
     value: 'Option5',
     label: 'Option5',
   },
-]
+];
+
+const fileList = ref([
+  {
+    name: 'element-plus-logo.svg',
+    url: 'https://element-plus.org/images/element-plus-logo.svg',
+  },
+  {
+    name: 'element-plus-logo2.svg',
+    url: 'https://element-plus.org/images/element-plus-logo.svg',
+  },
+]);
+
+const handleRemove = (file, uploadFiles) => {
+  console.log(file, uploadFiles)
+}
+const handlePreview = (uploadFile) => {
+  console.log(uploadFile)
+}
+const handleExceed = (files, uploadFiles) => {
+
+}
+const beforeRemove = (uploadFile, uploadFiles) => {
+
+}
+
+const slider = ref(0)
 </script>
 
 ## `fill()、clear()`
@@ -338,3 +364,51 @@ def test_mouse(page: Page):
     page.locator('[data-pw="right-click"]').click(button="right")
 ```
 
+## Upload files
+
+<el-upload
+  v-model:file-list="fileList"
+  class="upload-demo"
+  action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+  multiple
+  :on-preview="handlePreview"
+  :on-remove="handleRemove"
+  :before-remove="beforeRemove"
+  :limit="3"
+  :on-exceed="handleExceed"
+>
+  <el-button type="primary">Click to upload</el-button>
+  <template #tip>
+    <div class="el-upload__tip">
+      jpg/png files with a size less than 500KB.
+    </div>
+  </template>
+</el-upload>
+
+
+## Drag and Drop
+
+::: details Click me to view the Vue code
+```vue
+<template>
+<div id="slider-demo-block">
+  <span class="demonstration">Default style</span>
+  <el-slider v-model="slider" />
+</div>  
+</template>
+```
+:::
+
+<div id="slider-demo-block">
+  <span class="demonstration">Default style</span>
+  <el-slider v-model="slider" />
+</div>
+
+```python
+container = page.locator('id=slider-demo-block')
+source = container.locator('.el-slider__button')
+target = container.locator('.el-slider')
+target_box = target.bounding_box()
+# ✓ The circle slider will arrive to 88%
+source.drag_to(target, target_position={'x': target_box['width'] * 0.88, 'y': 13})
+```
