@@ -71,6 +71,15 @@ export default {
             link: "/python/guides/assertions"
           }
         ],
+      },
+      {
+        text: "Element plus",
+        items: [
+          {
+            text: "Scrollbar",
+            link: "/python/ele/scrollbar"
+          }
+        ]
       }
     ],
     footer: {
