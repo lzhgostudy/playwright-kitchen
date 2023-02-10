@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Playwright
-  text: Example for Python.
+  text: Example for You.
   tagline: This is an example app used to showcase Playwright.dev testing. For a full reference of playwright documentation.
   image:
     src: /playwright-logo.png

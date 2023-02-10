@@ -12,6 +12,7 @@ export default {
     socialLinks: [
       { icon: 'github', link: 'https://github.com/lzhgostudy/playwright-kitchen' },
     ],
+    outline: 'deep',
     sidebar: [
       {
         text: "Getting Started",
@@ -69,6 +70,10 @@ export default {
           {
             text: "Assertions",
             link: "/python/guides/assertions"
+          },
+          {
+            text: "Evaluating JavaScript",
+            link: "/python/guides/evaluate"
           }
         ],
       },
