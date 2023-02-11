@@ -98,10 +98,12 @@ const slider = ref(0)
   </el-form-item>
 </el-form>
 
-```python
+::: code-group
+```Python
 page.get_by_label('Text input').fill('Hello Text input')
 page.get_by_label('Text input').clear()
 ```
+:::
 
 
 ## `click()`
@@ -124,10 +126,12 @@ page.get_by_label('Text input').clear()
   </el-form-item>
 </el-form>
 
-```python
+::: code-group
+```Python
 page.get_by_text('Open').click()
 page.get_by_text('Close').click()
 ```
+:::
 
 ## `check()、uncheck()` & `set_checked(bool)`
 
@@ -149,7 +153,8 @@ page.get_by_text('Close').click()
   </el-form-item>
 </el-form>
 
-```python
+::: code-group
+```Python
 # check & uncheck
 page.get_by_text('Check Option 1').check()
 page.get_by_text('Check Option 1').uncheck()
@@ -158,6 +163,7 @@ page.get_by_text('Check Option 1').uncheck()
 page.get_by_text('Check Option 1').set_checked(True)
 page.get_by_text('Check Option 1').set_checked(False)
 ```
+:::
 
 ## `Element-plus Select`
 
@@ -213,7 +219,8 @@ page.get_by_text('Check Option 1').set_checked(False)
   </el-form-item>
 </el-form>
 
-```python
+::: code-group
+```Python
 page.get_by_label('Select 1').click()
 popover = page.locator('.el-popper:visible')
 popover.get_by_text('Option2').click()
@@ -222,6 +229,7 @@ page.get_by_label('Select 2').click()
 popover = page.locator('.el-popper:visible')
 popover.get_by_text('Option4').click()
 ```
+:::
 
 ## Mouse click
 
@@ -353,7 +361,8 @@ Performs a simple human click.
   </el-col>
 </el-row>
 
-```python
+::: code-group
+```Python
 def test_mouse(page: Page):
     page.goto("https://lzhgostudy.github.io/playwright-kitchen/guides/actions.html")
     # hover to trigger
@@ -363,6 +372,7 @@ def test_mouse(page: Page):
     # right click to trigger
     page.locator('[data-pw="right-click"]').click(button="right")
 ```
+:::
 
 ## Upload files
 
@@ -404,7 +414,8 @@ def test_mouse(page: Page):
   <el-slider v-model="slider" />
 </div>
 
-```python
+::: code-group
+```Python
 container = page.locator('id=slider-demo-block')
 source = container.locator('.el-slider__button')
 target = container.locator('.el-slider')
@@ -412,3 +423,4 @@ target_box = target.bounding_box()
 # ✓ The circle slider will arrive to 88%
 source.drag_to(target, target_position={'x': target_box['width'] * 0.88, 'y': 13})
 ```
+:::

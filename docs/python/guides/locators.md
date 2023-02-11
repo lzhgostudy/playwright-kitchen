@@ -48,7 +48,7 @@ const filterByTextTableData = [
 </script>
 
 
-## `.get_by_label()`
+## `.getByLabel()`
 
 ::: details Click me to view the Vue code
 ```vue {3,4,5}
@@ -76,12 +76,17 @@ const byLabel = reactive({
   </el-form-item>
 </el-form>
 
-```python
-page.get_by_label('Activity name').fill('Swimming')
+::: code-group
+```TypeScript
+await page.getByLabel("Activity name").fill("Swimming")
 ```
 
+```Python
+page.get_by_label('Activity name').fill('Swimming')
+```
+:::
 
-## `.get_by_placeholder()`
+## `.getByPlaceholder()`
 
 ::: details Click me to view the Vue code
 ```vue {4}
@@ -108,11 +113,17 @@ const byPlaceholder = reactive({
   </el-form-item>
 </el-form>
 
-```python
-page.get_by_placeholder('Enter details').fill("Hello Textarea")
+::: code-group
+```TypeScript
+await page.getByPlaceholder("Enter details").fill("Hello Textarea")
 ```
 
-## `.get_by_text()`
+```Python
+page.get_by_placeholder('Enter details').fill("Hello Textarea")
+```
+:::
+
+## `.getByText()`
 
 ::: details Click me to view the Vue code
 ```vue {5,6,7,8}
@@ -150,12 +161,16 @@ const byText = reactive({
   </el-form-item>
 </el-form>
 
-```python
-page.locator('form').get_by_text('Offline activities').click()
-page.locator('form').get_by_text('Venue').click()
+::: code-group
+```TypeScript
+await page.locator("form").getByText("Offline activities").click()
 ```
+```Python
+page.locator('form').get_by_text('Offline activities').click()
+```
+:::
 
-## `.get_by_alt_text()`
+## `.getByAltText()`
 
 ::: details Click me to view the Vue code
 ```vue
@@ -172,11 +187,17 @@ const bird_img_url = ref('https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c
 
 <el-image style="max-width: 100%" :src="bird_img_url" fit="contain" alt="bird" />
 
-```python
-page.get_by_alt_text('bird').click()
+::: code-group
+```TypeScript
+await page.getByAltText("bird").click()
 ```
 
-## `.get_by_title()`
+```Python
+page.get_by_alt_text('bird').click()
+```
+:::
+
+## `.getByTitle()`
 
 ::: details Click me to view the Vue code
 ```vue {5,6}
@@ -208,14 +229,17 @@ const byTitle = reactive({
   </el-form-item>
 </el-form>
 
+::: code-group
+```TypeScript
+await page.locator("form").getByTitle("Venue").click()
+```
 
-## `.get_attribute()`
+```Python
+page.locator('form').get_by_title('Venue').click()
+```
+:::
 
-
-
-
-
-## `.get_by_role()`
+## `.getByRole()`
 
 ::: details Click me to view the Vue code
 ```vue {4}
@@ -241,16 +265,17 @@ const byRole = reactive({
   </el-form-item>
 </el-form>
 
-
-```python
-from playwright.sync_api import Page, expect
-
-
-def test_locator_by_role(page: Page):
-    page.goto('https://lzhgostudy.github.io/playwright-kitchen/python/guides/locators.html')
-    expect(page.locator('form').get_by_role(role='switch')).to_have_count(1)
-
+::: code-group
+```TypeScript
+const dom = await page.locator("form").getByRole('switch')
+await expect(dom).toHaveCount(1)
 ```
+
+```Python
+dom = page.locator('form').get_by_role(role='switch')
+expect(dom).to_have_count(1)
+```
+:::
 
 
 ## Locate by CSS
@@ -266,12 +291,18 @@ def test_locator_by_role(page: Page):
 
 <el-button type="primary">Submit</el-button>
 
-```python
-page.locator('button[class*="primary"]').click()
+::: code-group
+```TypeScript
+await page.locator('button[class*="primary"]').click()
 ```
 
+```Python
+page.locator('button[class*="primary"]').click()
+```
+:::
 
-# Lists
+
+## Lists
 
 
 ::: details Click me to view the Vue code
@@ -322,99 +353,186 @@ const filterByTextTableData = [
   </el-table>
 </div>
 
+Common code below
 
-## `first`
+::: code-group
+```TypeScript
+const rows = await page.locator("#list-locator .el-table__body tr");
+```
 
-```python
+```Python
 rows = page.locator('#list-locator .el-table__body tr')
+```
+:::
+
+### `.first`
+
+::: code-group
+```TypeScript
+await rows.first().locator('td').first().click()
+```
+
+```Python
 rows.first.locator('td').first.click()
 ```
+:::
 
-## `last`
+### `.last`
 
-```python
-rows = page.locator('#list-locator .el-table__body tr')
-rows.last.locator('td').first.click()
+::: code-group
+```TypeScript
+await rows.last().locator('td').first().click()
 ```
 
-## `nth(n)`
+```Python
+rows.last.locator('td').first.click()
+```
+:::
+
+### `.count()`
+
+::: code-group
+```TypeScript
+import assert from "node:assert"
+
+const count = await rows.count();
+assert.equal(count, 4)
+```
+
+```Python
+count = rows.count()
+assert count == 4
+```
+:::
+
+### `.nth(n)`
 
 Returns locator to the n-th matching element. It's zero based, `nth(0)` selects the first element.
 
-```python
-rows = page.locator('#list-locator .el-table__body tr')
-rows.nth(2).locator('td').first.click()
+::: code-group
+```TypeScript
+await rows.nth(2).locator("td").first().click()
 ```
 
+```Python
+rows.nth(2).locator('td').first.click()
+```
+:::
 
-## `all()`
+### `.textContent()`
 
-```python
+::: code-group
+```TypeScript
+import assert from "node:assert"
+
+const text = await rows.first().locator('td').last().textContent()
+assert.equal(text, '294 Prospect Street, Camden, New Jersey')
+```
+
+```Python
+text = rows.first.locator('td').last.text_content()
+assert text == '294 Prospect Street, Camden, New Jersey'
+```
+:::
+
+
+### `.all()`
+
+::: code-group
+```TypeScript
+for (const item of await rows.all()) {
+  await item.locator('td').first().click()
+}
+```
+
+```Python
 rows = page.locator('#list-locator .el-table__body tr')
 for item in rows.all():
     item.locator('td').first.click()
 ```
+:::
 
 
-## `all_inner_texts()`
+### `.allInnerTexts()`
 
-```python
-rows = page.locator('#list-locator .el-table__body tr')
+::: code-group
+```TypeScript
+import assert from "node:assert"
+
+const texts = await rows.locator("td:nth-child(3)").allInnerTexts()
+assert.deepEqual(texts, ['Muriel E Ferrara', 'Catherine C Rogers', 'Raymond V Newby', 'Kevin C Okeefe'])
+```
+
+```Python
 texts = rows.locator('td:nth-child(3)').all_inner_texts()
 assert texts == ['Muriel E Ferrara', 'Catherine C Rogers', 'Raymond V Newby', 'Kevin C Okeefe']
 ```
+:::
 
 
-## `all_text_contents()`
+### `.allTextContents()`
 
-```python
-rows = page.locator('#list-locator .el-table__body tr')
+::: code-group
+```TypeScript
+import assert from "node:assert"
+
+const texts = await rows.locator('td:nth-child(3)').allTextContents()
+assert.deepEqual(texts, ['Muriel E Ferrara', 'Catherine C Rogers', 'Raymond V Newby', 'Kevin C Okeefe'])
+```
+
+```Python
 texts = rows.locator('td:nth-child(3)').all_text_contents()
 assert texts == ['Muriel E Ferrara', 'Catherine C Rogers', 'Raymond V Newby', 'Kevin C Okeefe']
 ```
-
-## `count()`
-
-```python
-rows = page.locator('#list-locator .el-table__body tr')
-count = rows.count()
-assert count == 4
-```
-
-## `text_content()`
-
-```python
-rows = page.locator('#list-locator .el-table__body tr')
-text = rows.first.locator('td').last.text_content()
-assert text == '294 Prospect Street, Camden, New Jersey'
-```
+:::
 
 <br/>
 
-# Filtering Locators
+## Filtering Locators
 
 
-## Filter by text
+### Filter by text
 
-```python
+::: code-group
+```TypeScript
+const rows = await page.locator("#list-locator .el-table__body tr")
+await rows.filter({
+  hasText: "Raymond V Newby"
+}).locator('td').nth(0).click()
+
+// Use a regular expression:
+await rows.filter({
+  hasText: /Kevin/
+}).locator('td').nth(0).click()
+```
+
+```Python
 page.locator('#list-locator .el-table__body tr')\
-    .filter(has_text='Raymond V Newby')\
-    .locator('td').nth(0).click()
+  .filter(has_text='Raymond V Newby')\
+  .locator('td').nth(0).click()
 
 # Use a regular expression:
 page.locator('#list-locator .el-table__body tr')\
-    .filter(has_text=re.compile('Raymond'))\
-    .locator('td').nth(0).click() 
+  .filter(has_text=re.compile('Raymond'))\
+  .locator('td').nth(0).click() 
 
 ```
+:::
 
 
-## Filter by another locator
+### Filter by another locator
 
-```python
+::: code-group
+```TypeScript
+const rows = await page.locator("#list-locator .el-table__body tr")
+await rows.filter({
+  has: page.getByText(/Catherine/)
+}).locator('td').nth(0).click()
+```
+
+```Python
 page.locator('#list-locator .el-table__body tr')\
-    .filter(has=page.get_by_text('Kevin C Okeefe'))\
-    .locator('td').nth(0).click()
+  .filter(has=page.get_by_text('Kevin C Okeefe'))\
+  .locator('td').nth(0).click()
 ```
-
-
+:::

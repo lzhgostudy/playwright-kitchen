@@ -51,7 +51,8 @@ import { ref } from 'vue';
   <p v-for="item in 20" :key="item" class="scrollbar-demo-item">{{ item }}</p>
 </el-scrollbar>
 
-```python
+::: code-group
+```Python
 js_handle = """
   const container = document.querySelector('#v-scroll .el-scrollbar__wrap')
   container.scrollTop = 100
@@ -59,6 +60,7 @@ js_handle = """
 # 👆 The list scroll to top 100px
 page.evaluate(js_handle)
 ```
+:::
 
 
 ## Horizontal scroll
@@ -85,7 +87,8 @@ page.evaluate(js_handle)
   </div>
 </el-scrollbar>
 
-```python
+::: code-group
+```Python
 js_handle = """
   const container = document.querySelector('#h-scroll .el-scrollbar__wrap')
   container.scrollLeft = 200
@@ -93,3 +96,4 @@ js_handle = """
 # 👈 The list scroll to left 200px
 page.evaluate(js_handle)
 ```
+:::

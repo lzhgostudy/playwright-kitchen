@@ -1,6 +1,6 @@
 # Assertions
 
-```python
+```Python
 from playwright.sync_api import expect
 ```
 
@@ -66,12 +66,14 @@ const tableData = [
   </el-form-item>
 </el-form>
 
-```python
+::: code-group
+```Python
 checkbox = page.get_by_text('Checked Option')
 expect(checkbox).to_be_checked()
 checkbox = page.get_by_text('Not Check Option')
 expect(checkbox).not_to_be_checked()
 ```
+:::
 
 
 ## `.to_be_disabled() .to_be_enabled()`
@@ -148,7 +150,8 @@ expect(checkbox).not_to_be_checked()
   </el-form-item>
 </el-form>
 
-```python
+::: code-group
+```Python
 form = page.locator('#example-2')
 expect(form.get_by_text('Disabled Check Option')).to_be_disabled()
 expect(form.get_by_label('Text Input')).to_be_disabled()
@@ -158,6 +161,7 @@ expect(form.get_by_label('Textarea')).to_be_enabled()
 expect(form.get_by_text('Disabled Button')).to_be_disabled()
 expect(form.get_by_text('Enabled Button')).to_be_enabled()
 ```
+:::
 
 ## `.to_be_empty()`
 
@@ -173,9 +177,11 @@ Ensures the Locator points to an empty editable element or to a DOM node that ha
 
 <el-empty id="example-empty" description=" " />
 
-```python
+::: code-group
+```Python
 expect(page.locator('#example-empty')).to_be_empty()
 ```
+:::
 
 ::: details Click me to view the Vue code
 ```vue
@@ -187,9 +193,11 @@ expect(page.locator('#example-empty')).to_be_empty()
 
 <el-empty id="example-not-empty" description="No Data" />
 
-```python
+::: code-group
+```Python
 expect(page.locator('#example-not-empty')).not_to_be_empty()
 ```
+:::
 
 <br/>
 
@@ -251,27 +259,34 @@ const tableData = [
   </el-table>
 </div>
 
-```python
+::: code-group
+```Python
 # common code below
 table = page.locator('#table-data-list')
 rows = table.locator('.el-table:visible .el-table__row')
 ```
+:::
 
 ## `.to_have_id()`
 
-```python
+::: code-group
+```Python
 expect(table).to_have_id('table-data-list')
 ```
+:::
 
 ## `.to_have_count()`
 
-```python
+::: code-group
+```Python
 expect(rows).to_have_count(4)
 ```
+:::
 
 ## `.to_contain_text()`
 
-```python
+::: code-group
+```Python
 # ✓ Contains the text
 expect(rows.first).to_contain_text('Muriel')
 expect(rows.first).to_contain_text(re.compile(r'Prospect'))
@@ -284,10 +299,12 @@ expect(rows).to_contain_text(['Mary'])
 # ✖ Locator points to the outer list element, not to the list items
 expect(table).to_contain_text(['Ferrara', 'Rogers'])
 ```
+:::
 
 ## `.to_have_text()`
 
-```python
+::: code-group
+```Python
 # ✖ Wrong, not only has this text
 expect(rows.first).to_have_text('Muriel E Ferrara')
 # ✓ The third td DOM has the text only in this row
@@ -299,3 +316,4 @@ expect(rows.first.locator('td')).to_have_text(['', '2022-01-22', 'Muriel E Ferra
 # ✖ The row item does not match, wrong order
 expect(rows.first.locator('td')).to_have_text(['Muriel E Ferrara', '18', '294 Prospect Street, Camden, New Jersey'])
 ```
+:::
