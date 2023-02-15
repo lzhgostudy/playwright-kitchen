@@ -78,14 +78,27 @@ export default {
         ],
       },
       {
-        text: "Element plus",
+        text: "Vue Component Testing",
         items: [
           {
-            text: "Scrollbar",
-            link: "/python/ele/scrollbar"
+            text: "Vue Quickstart",
+            link: "/ct/vue/quickstart"
+          },
+          {
+            text: "Vue Examples",
+            link: "/ct/vue/examples"
+          },
+          {
+            text: "Element-plus",
+            items: [
+              {
+                text: "Button",
+                link: "/ct/vue/element-plus/button"
+              }
+            ]
           }
-        ]
-      }
+        ],
+      },
     ],
     footer: {
       message: 'Released under the MIT License.',
