@@ -1,1 +1,0 @@
-import{_ as s,o as n,c as a,a as l}from"./app.a79a9890.js";const i=JSON.parse('{"title":"Button","description":"","frontmatter":{},"headers":[],"relativePath":"ct/vue/element-plus/button.md"}'),o={name:"ct/vue/element-plus/button.md"},p=l("",3),t=[p];function e(c,r,F,D,y,C){return n(),a("div",null,t)}const u=s(o,[["render",e]]);export{i as __pageData,u as default};
